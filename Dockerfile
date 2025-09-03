@@ -5,14 +5,14 @@ RUN apk update && \
     apk add --no-cache \
     ffmpeg \
     imagemagick \
-    webp && \
+    libwebp-tools && \
     npm i pm2 -g && \
     rm -rf /var/cache/apk/*
 
 WORKDIR /app
 
 # Copy package files
-COPY package.json .
+COPY package.json ./
 
 # Install dependencies
 RUN npm install
@@ -20,4 +20,4 @@ RUN npm install
 # Copy source code
 COPY . .
 
-CMD ["pm2-runtime", "ecosystem.config.cjs"] 
+CMD ["pm2-runtime", "index.js"]
