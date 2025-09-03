@@ -1,0 +1,48 @@
+{
+  "name": "javix",
+  "version": "1.0.0",
+  "description": "Advance Multi Device Whatsapp Bot",
+  "license": "MIT",
+  "author": "Maher Zubair (maherxubair)",
+  "type": "module",
+  "main": "index.js",
+  "imports": {
+    "#config": "./config.js"
+  },
+  "scripts": {
+    "start": "pm2 start . --deep-monitoring --attach --name javix",
+    "dev": "nodemon . --ignore logs/** --ignore m.js",
+    "stop": "pm2 stop javix",
+    "restart": "pm2 restart javix",
+    "reload": "pm2 reload javix",
+    "delete": "pm2 delete javix",
+    "logs": "pm2 logs javix",
+    "monit": "pm2 monit",
+    "status": "pm2 status"
+  },
+  "dependencies": {
+    "@nexoracle/api": "^1.0.2",
+    "@nexoracle/utils": "^1.1.19",
+    "axios": "^1.9.0",
+    "baileys": "^6.7.18",
+    "chalk": "^5.4.1",
+    "cheerio": "^1.1.0",
+    "discord-economy-super": "^1.7.7",
+    "dotenv": "^16.5.0",
+    "express": "^4.21.2",
+    "form-data": "^4.0.3",
+    "jimp": "*",
+    "logyo": "^1.0.2",
+    "mongoose": "^8.15.1",
+    "node-cache": "^5.1.2",
+    "node-fetch": "^3.3.2",
+    "nodemon": "^3.1.10",
+    "pino": "^9.7.0",
+    "qrcode-terminal": "^0.12.0",
+    "qs": "^6.14.0",
+    "socket.io": "^4.8.1"
+  },
+  "devDependencies": {
+    "pm2": "^5.3.0"
+  }
+}

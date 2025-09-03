@@ -1,0 +1,8 @@
+node_modules
+package-lock.json
+bun.lock
+.env
+pnpm*
+todo.txt
+logs/
+m.js

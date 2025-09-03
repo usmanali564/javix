@@ -1,0 +1,57 @@
+{
+  "name": "Javix",
+  "description": "A modern, feature-rich WhatsApp bot with advanced features, role management, and AI integration",
+  "logo": "https://i.ibb.co/GfM38g8g/windbreaker-img.jpg",
+  "keywords": ["javix", "whatsapp-bot", "baileys", "multi-device", "AI"],
+  "success_url": "/",
+  "stack": "container",
+  "env": {
+    "MONGODB_URI": {
+      "description": "Mongodb Database URI",
+      "value": "",
+      "required": true
+    },
+
+    "SESSION_ID": {
+      "description": "Session ID for your bot. You can put any secure characters/crypto.",
+      "value": "",
+      "required": true
+    },
+
+    "OWNER_NAME": {
+      "description": "Name of the bot owner",
+      "value": "Usman",
+      "required": false
+    },
+
+    "OWNER_NUMBERS": {
+      "description": "Whatsapp account number of the owner. Multiple numbers must be separated by a comma.",
+      "value": "",
+      "required": true
+    },
+
+    "PREFIX": {
+      "description": "Your desired prefix to use bot.",
+      "value": ".",
+      "required": false
+    },
+
+    "BOT_NAME": {
+      "description": "Name of your bot.",
+      "value": "Javix",
+      "required": false
+    },
+
+    "BOT_IMAGES": {
+      "description": "Images for your bot. Multiple images must be seprated by comma.",
+      "value": "https://i.ibb.co/GfM38g8g/windbreaker-img.jpg",
+      "required": false
+    },
+
+    "CAPTION": {
+      "description": "Enter caption for your bot.",
+      "value": "*_Downloaded By Javix_*",
+      "required": false
+    }
+  }
+}

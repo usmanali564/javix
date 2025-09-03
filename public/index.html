@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Javix - Advanced WhatsApp Bot</title>
+    <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/5968/5968841.png" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: {
+                50: "#f0f9ff",
+                100: "#e0f2fe",
+                200: "#bae6fd",
+                300: "#7dd3fc",
+                400: "#38bdf8",
+                500: "#0ea5e9",
+                600: "#0284c7",
+                700: "#0369a1",
+                800: "#075985",
+                900: "#0c4a6e",
+              },
+              dark: {
+                900: "#0f172a",
+                800: "#1e293b",
+                700: "#334155",
+                600: "#475569",
+                500: "#64748b",
+              },
+            },
+            fontFamily: {
+              sans: ["Inter", "ui-sans-serif", "system-ui"],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
+
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: #0f172a;
+        color: #e2e8f0;
+      }
+
+      /* Remove focus outlines */
+      *:focus {
+        outline: none !important;
+        box-shadow: none !important;
+      }
+
+      /* Custom scrollbar */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #1e293b;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #475569;
+        border-radius: 4px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #64748b;
+      }
+
+      /* Animation for feature cards */
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
+      }
+      .float-animation {
+        animation: float 4s ease-in-out infinite;
+      }
+    </style>
+  </head>
+  <body class="min-h-screen bg-dark-900">
+    <!-- Navbar -->
+    <nav class="fixed w-full bg-dark-800/80 backdrop-blur-md z-50 border-b border-dark-700">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16">
+          <!-- Logo -->
+          <div class="flex-shrink-0">
+            <a href="#" class="text-2xl font-bold text-primary-400 hover:text-primary-300 transition-colors"> Javix </a>
+          </div>
+
+          <!-- Navigation Links -->
+          <div class="hidden md:block">
+            <div class="ml-10 flex items-center space-x-4">
+              <a href="#" class="text-gray-300 hover:text-primary-400 px-3 py-2 rounded-md text-sm font-medium transition-colors">Home</a>
+              <a href="#about" class="text-gray-300 hover:text-primary-400 px-3 py-2 rounded-md text-sm font-medium transition-colors">About</a>
+              <a href="#features" class="text-gray-300 hover:text-primary-400 px-3 py-2 rounded-md text-sm font-medium transition-colors">Features</a>
+              <a href="/session" class="text-gray-300 hover:text-primary-400 px-3 py-2 rounded-md text-sm font-medium transition-colors">Session</a>
+            </div>
+          </div>
+
+          <div class="md:hidden flex items-center">
+            <button id="mobile-menu-button" class="text-gray-300 hover:text-primary-400 focus:outline-none">
+              <i class="fas fa-bars text-xl"></i>
+            </button>
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="hidden md:flex flex items-center space-x-4">
+            <a href="https://github.com/usmanali564" target="_blank" class="text-gray-300 hover:text-primary-400 transition-colors">
+              <i class="fab fa-github text-xl"></i>
+            </a>
+            <a href="https://github.com/usmanali564/javix" class="text-gray-300 hover:text-primary-400 transition-colors">
+              <i class="fas fa-code text-xl"></i>
+            </a>
+            <a href="https://wa.me/923466319114" target="_blank" class="text-gray-300 hover:text-primary-400 transition-colors">
+              <i class="fab fa-whatsapp text-xl"></i>
+            </a>
+            <a href="https://github.com/usmanali564/javix" class="hidden md:inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-primary-600 hover:bg-primary-700 transition-colors"> Get Started </a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- SideBar -->
+    <div id="mobile-menu" class="fixed inset-y-0 right-0 w-64 bg-dark-800 shadow-lg transform translate-x-full z-50 transition-transform duration-300 ease-in-out md:hidden">
+      <div class="flex items-center justify-between px-6 py-4 border-b border-dark-700">
+        <span class="text-xl font-bold text-primary-400">Javix</span>
+        <button id="close-menu-button" class="text-gray-300 hover:text-primary-400 focus:outline-none">
+          <i class="fas fa-times text-xl"></i>
+        </button>
+      </div>
+      <div class="px-6 py-4 space-y-6">
+        <a href="#" class="block text-gray-300 hover:text-primary-400 transition-colors">Home</a>
+        <a href="#about" class="block text-gray-300 hover:text-primary-400 transition-colors">About</a>
+        <a href="#features" class="block text-gray-300 hover:text-primary-400 transition-colors">Features</a>
+        <div class="pt-4 border-t border-dark-700 space-y-4">
+          <a href="https://github.com/usmanali564/javix" target="_blank" class="flex items-center text-gray-300 hover:text-primary-400 transition-colors"> <i class="fab fa-github mr-3"></i> GitHub </a>
+          <a href="/session" class="flex items-center text-gray-300 hover:text-primary-400 transition-colors"> <i class="fas fa-code mr-3"></i> Session </a>
+          <a href="https://wa.me/923466319114" target="_blank" class="flex items-center text-gray-300 hover:text-primary-400 transition-colors"> <i class="fab fa-whatsapp mr-3"></i> WhatsApp </a>
+        </div>
+        <a href="https://github.com/usmanali564/javix" class="block mt-6 px-4 py-2 text-center text-white bg-primary-600 hover:bg-primary-700 rounded-lg transition-colors"> Get Started </a>
+      </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="pt-32 pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+      <div class="text-center">
+        <h1 class="text-5xl md:text-7xl font-bold text-white mb-6">
+          <span class="bg-clip-text text-transparent bg-gradient-to-r from-primary-400 to-primary-600">Javix</span>
+        </h1>
+        <p class="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto">The most advanced WhatsApp bot with powerful features for automation, moderation, and entertainment.</p>
+        <div class="mt-10 flex justify-center gap-4">
+          <a href="https://github.com/usmanali564/javix" class="px-8 py-3 bg-primary-600 hover:bg-primary-700 text-white font-medium rounded-lg transition-colors"> Get Started </a>
+          <a href="#features" class="px-8 py-3 border border-primary-600 text-primary-400 hover:bg-dark-700 font-medium rounded-lg transition-colors"> Explore Features </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto bg-dark-800 rounded-xl">
+      <div class="text-center">
+        <h2 class="text-3xl font-bold text-white mb-6">About Javix</h2>
+        <div class="max-w-4xl mx-auto">
+          <p class="text-lg text-gray-300 mb-6">Javix is a cutting-edge WhatsApp bot designed to enhance your messaging experience with powerful automation, moderation tools, and entertainment features. Built with performance and reliability in mind.</p>
+          <p class="text-lg text-gray-300">Our bot integrates seamlessly with WhatsApp, providing a wide range of functionalities that make group management easier and conversations more engaging.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl font-bold text-white mb-4">Powerful Features</h2>
+        <p class="text-gray-400 max-w-2xl mx-auto">Explore the amazing capabilities that make Javix stand out from the crowd</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Feature 1 -->
+        <div class="bg-dark-800 rounded-xl p-8 hover:bg-dark-700 transition-colors duration-300 border border-dark-700 hover:border-primary-500/30 group">
+          <div class="w-16 h-16 bg-primary-900/20 rounded-lg flex items-center justify-center mb-6 text-primary-400 group-hover:text-primary-300 transition-colors">
+            <i class="fas fa-robot text-3xl"></i>
+          </div>
+          <h3 class="text-xl font-bold text-white mb-3">Smart Automation</h3>
+          <p class="text-gray-400">Automate repetitive tasks and responses with customizable triggers and workflows.</p>
+        </div>
+
+        <!-- Feature 2 -->
+        <div class="bg-dark-800 rounded-xl p-8 hover:bg-dark-700 transition-colors duration-300 border border-dark-700 hover:border-primary-500/30 group">
+          <div class="w-16 h-16 bg-primary-900/20 rounded-lg flex items-center justify-center mb-6 text-primary-400 group-hover:text-primary-300 transition-colors">
+            <i class="fas fa-shield-alt text-3xl"></i>
+          </div>
+          <h3 class="text-xl font-bold text-white mb-3">Advanced Moderation</h3>
+          <p class="text-gray-400">Keep your groups safe with powerful moderation tools and spam protection.</p>
+        </div>
+
+        <!-- Feature 3 -->
+        <div class="bg-dark-800 rounded-xl p-8 hover:bg-dark-700 transition-colors duration-300 border border-dark-700 hover:border-primary-500/30 group">
+          <div class="w-16 h-16 bg-primary-900/20 rounded-lg flex items-center justify-center mb-6 text-primary-400 group-hover:text-primary-300 transition-colors">
+            <i class="fas fa-gamepad text-3xl"></i>
+          </div>
+          <h3 class="text-xl font-bold text-white mb-3">Entertainment</h3>
+          <p class="text-gray-400">Games, quizzes, and fun commands to keep your group engaged and active.</p>
+        </div>
+
+        <!-- Feature 4 -->
+        <div class="bg-dark-800 rounded-xl p-8 hover:bg-dark-700 transition-colors duration-300 border border-dark-700 hover:border-primary-500/30 group">
+          <div class="w-16 h-16 bg-primary-900/20 rounded-lg flex items-center justify-center mb-6 text-primary-400 group-hover:text-primary-300 transition-colors">
+            <i class="fas fa-bolt text-3xl"></i>
+          </div>
+          <h3 class="text-xl font-bold text-white mb-3">Lightning Fast</h3>
+          <p class="text-gray-400">Optimized for performance with minimal latency and maximum reliability.</p>
+        </div>
+
+        <!-- Feature 5 -->
+        <div class="bg-dark-800 rounded-xl p-8 hover:bg-dark-700 transition-colors duration-300 border border-dark-700 hover:border-primary-500/30 group">
+          <div class="w-16 h-16 bg-primary-900/20 rounded-lg flex items-center justify-center mb-6 text-primary-400 group-hover:text-primary-300 transition-colors">
+            <i class="fas fa-cogs text-3xl"></i>
+          </div>
+          <h3 class="text-xl font-bold text-white mb-3">Customizable</h3>
+          <p class="text-gray-400">Tailor the bot to your needs with extensive configuration options.</p>
+        </div>
+
+        <!-- Feature 6 -->
+        <div class="bg-dark-800 rounded-xl p-8 hover:bg-dark-700 transition-colors duration-300 border border-dark-700 hover:border-primary-500/30 group">
+          <div class="w-16 h-16 bg-primary-900/20 rounded-lg flex items-center justify-center mb-6 text-primary-400 group-hover:text-primary-300 transition-colors">
+            <i class="fas fa-cloud text-3xl"></i>
+          </div>
+          <h3 class="text-xl font-bold text-white mb-3">Cloud Sync</h3>
+          <p class="text-gray-400">Your settings and data are safely stored and synced across devices.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+        <div class="bg-dark-800 rounded-xl p-6 text-center border border-dark-700">
+          <div class="text-4xl font-bold text-primary-400 mb-2">500+</div>
+          <div class="text-gray-400">Active Users</div>
+        </div>
+        <div class="bg-dark-800 rounded-xl p-6 text-center border border-dark-700">
+          <div class="text-4xl font-bold text-primary-400 mb-2">99.9%</div>
+          <div class="text-gray-400">Uptime</div>
+        </div>
+        <div class="bg-dark-800 rounded-xl p-6 text-center border border-dark-700">
+          <div class="text-4xl font-bold text-primary-400 mb-2">1000+</div>
+          <div class="text-gray-400">Forks</div>
+        </div>
+        <div class="bg-dark-800 rounded-xl p-6 text-center border border-dark-700">
+          <div class="text-4xl font-bold text-primary-400 mb-2">24/7</div>
+          <div class="text-gray-400">Support</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark-800 py-12 px-4 sm:px-6 lg:px-8 border-t border-dark-700">
+      <div class="max-w-7xl mx-auto">
+        <div class="text-center">
+          <a href="#" class="text-2xl font-bold text-primary-400 hover:text-primary-300 transition-colors mb-6 inline-block"> Javix </a>
+          <div class="flex justify-center space-x-6 mb-8">
+            <a href="https://github.com/maherxubair" target="_blank" class="text-gray-400 hover:text-primary-400 transition-colors">
+              <i class="fab fa-github text-xl"></i>
+            </a>
+            <a href="https://api.nexoracle.com" class="text-gray-400 hover:text-primary-400 transition-colors">
+              <i class="fas fa-code text-xl"></i>
+            </a>
+            <a href="https://wa.me/923466319114" target="_blank" class="text-gray-400 hover:text-primary-400 transition-colors">
+              <i class="fab fa-whatsapp text-xl"></i>
+            </a>
+          </div>
+          <p class="text-white-500 text-sm">Designed and Developed by <a href="https://nexoracle.com" target="_blank" class="text-primary-400 hover:text-primary-300 transition-colors">NexOracle</a></p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="fixed bottom-8 right-8 bg-primary-600 hover:bg-primary-700 text-white p-3 rounded-full shadow-lg transition-colors duration-300 z-50 opacity-0 invisible transition-all">
+      <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+      // Smooth scrolling for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          document.querySelector(this.getAttribute("href")).scrollIntoView({
+            behavior: "smooth",
+          });
+        });
+      });
+
+      // Add shadow to navbar on scroll
+      window.addEventListener("scroll", function () {
+        const nav = document.querySelector("nav");
+        if (window.scrollY > 10) {
+          nav.classList.add("shadow-lg");
+        } else {
+          nav.classList.remove("shadow-lg");
+        }
+      });
+
+      // Mobile menu toggle
+      const mobileMenuButton = document.getElementById("mobile-menu-button");
+      const closeMenuButton = document.getElementById("close-menu-button");
+      const mobileMenu = document.getElementById("mobile-menu");
+
+      mobileMenuButton.addEventListener("click", () => {
+        mobileMenu.classList.remove("translate-x-full");
+        mobileMenu.classList.add("translate-x-0");
+      });
+
+      closeMenuButton.addEventListener("click", () => {
+        mobileMenu.classList.remove("translate-x-0");
+        mobileMenu.classList.add("translate-x-full");
+      });
+
+      // Close menu when clicking on a link
+      document.querySelectorAll("#mobile-menu a").forEach((link) => {
+        link.addEventListener("click", () => {
+          mobileMenu.classList.remove("translate-x-0");
+          mobileMenu.classList.add("translate-x-full");
+        });
+      });
+
+      // Back to Top Button
+      const backToTopButton = document.getElementById("back-to-top");
+
+      // Show/hide button based on scroll position
+      window.addEventListener("scroll", function () {
+        if (window.scrollY > 300) {
+          backToTopButton.classList.remove("opacity-0", "invisible");
+          backToTopButton.classList.add("opacity-100", "visible");
+        } else {
+          backToTopButton.classList.add("opacity-0", "invisible");
+          backToTopButton.classList.remove("opacity-100", "visible");
+        }
+      });
+
+      // Smooth scroll to top
+      backToTopButton.addEventListener("click", function (e) {
+        e.preventDefault();
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
+      });
+    </script>
+  </body>
+</html>
