@@ -4,7 +4,6 @@
   "logo": "https://i.ibb.co/GfM38g8g/windbreaker-img.jpg",
   "keywords": ["javix", "whatsapp-bot", "baileys", "multi-device", "AI"],
   "success_url": "/",
-  "stack": "container",
   "env": {
     "MONGODB_URI": {
       "description": "Mongodb Database URI",
