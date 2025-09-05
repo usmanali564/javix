@@ -18,7 +18,8 @@
     "delete": "pm2 delete javix",
     "logs": "pm2 logs javix",
     "monit": "pm2 monit",
-    "status": "pm2 status"
+    "status": "pm2 status",
+    "pull": "git pull origin main"
   },
   "dependencies": {
     "@nexoracle/api": "^1.0.2",
