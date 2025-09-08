@@ -51,6 +51,12 @@
       "description": "Enter caption for your bot.",
       "value": "*_Downloaded By Javix_*",
       "required": false
+    },
+
+    "AUTO_REACTION": {
+      "description": "Use 'true' if you the bot auto react to commands",
+      "value": "false",
+      "required": false
     }
   }
 }

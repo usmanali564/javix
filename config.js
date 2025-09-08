@@ -9,6 +9,7 @@ const config = {
     dbName: "Javix",
   },
 
+  sessionId: process.env.SESSION_ID || "",
   botName: process.env.BOT_NAME || "Javix",
   botImage: process.env.BOT_IMAGES || "https://i.ibb.co/GfM38g8g/windbreaker-img.jpg",
   ownerNumber: process.env.OWNER_NUMBERS ? process.env.OWNER_NUMBERS.split(",") : ["923127067592"],
@@ -16,7 +17,8 @@ const config = {
   prefix: process.env.PREFIX || ".",
   caption: process.env.CAPTION || "*_Downloaded By Javix_*",
 
-  sessionId: process.env.SESSION_ID || "",
+  autoReaction: process.env.AUTO_REACTION || false,
+
   auth: "qr",
   PORT: process.env.PORT || 3000,
 
